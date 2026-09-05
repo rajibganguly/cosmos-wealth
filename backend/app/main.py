@@ -15,6 +15,11 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+def root() -> dict[str, str]:
+    return {"service": "cosmos-wealth-api", "status": "ok"}
+
+
 @app.get("/api/health")
 def health_check() -> dict[str, str]:
     return {"status": "ok", "service": "cosmos-wealth-api"}
