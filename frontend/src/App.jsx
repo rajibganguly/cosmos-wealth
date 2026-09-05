@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const formatCurrency = (value) => `$${Number(value).toLocaleString('en-US')}`
+const apiBaseUrl = import.meta.env.VITE_API_URL || ''
 
 const getTimeGreeting = () => {
   const currentHour = new Date().getHours()
@@ -15,7 +16,7 @@ function App() {
   const [portfolio, setPortfolio] = useState([])
 
   useEffect(() => {
-    Promise.all([fetch('/api/health'), fetch('/api/portfolio')])
+    Promise.all([fetch(`${apiBaseUrl}/api/health`), fetch(`${apiBaseUrl}/api/portfolio`)])
       .then(async ([healthResponse, portfolioResponse]) => {
         if (!healthResponse.ok || !portfolioResponse.ok) throw new Error('API unavailable')
         return portfolioResponse.json()
