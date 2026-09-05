@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const formatCurrency = (value) => `$${Number(value).toLocaleString('en-US')}`
-const apiBaseUrl = import.meta.env.VITE_API_URL || ''
+const dataBaseUrl = `${import.meta.env.BASE_URL}data/`
 
 const getTimeGreeting = () => {
   const currentHour = new Date().getHours()
@@ -12,25 +12,39 @@ const getTimeGreeting = () => {
 }
 
 function App() {
-  const [apiStatus, setApiStatus] = useState('Checking connection')
+  const [dataStatus, setDataStatus] = useState('Loading local data')
   const [portfolio, setPortfolio] = useState([])
+  const [activity, setActivity] = useState([])
+  const [banner, setBanner] = useState(null)
 
   useEffect(() => {
-    Promise.all([fetch(`${apiBaseUrl}/api/health`), fetch(`${apiBaseUrl}/api/portfolio`)])
-      .then(async ([healthResponse, portfolioResponse]) => {
-        if (!healthResponse.ok || !portfolioResponse.ok) throw new Error('API unavailable')
-        return portfolioResponse.json()
+    Promise.all([
+      fetch(`${dataBaseUrl}health.json`),
+      fetch(`${dataBaseUrl}portfolio.json`),
+      fetch(`${dataBaseUrl}activity.json`),
+      fetch(`${dataBaseUrl}banner.json`),
+    ])
+      .then(async ([healthResponse, portfolioResponse, activityResponse, bannerResponse]) => {
+        if (!healthResponse.ok || !portfolioResponse.ok || !activityResponse.ok || !bannerResponse.ok) throw new Error('Local data unavailable')
+        const [portfolioData, activityData, bannerData] = await Promise.all([
+          portfolioResponse.json(),
+          activityResponse.json(),
+          bannerResponse.json(),
+        ])
+        return { ...portfolioData, ...activityData, ...bannerData }
       })
-      .then(({ assets }) => {
+      .then(({ assets, activities, milestone }) => {
         setPortfolio(assets)
-        setApiStatus('API connected')
+        setActivity(activities)
+        setBanner(milestone)
+        setDataStatus('Local data ready')
       })
       .catch(() => {
-        setApiStatus('API offline')
+        setDataStatus('Local data unavailable')
       })
   }, [])
 
-  /* The API owns the asset names, values, and performance figures. */
+  /* The local data file owns the asset names, values, and performance figures. */
   const displayPortfolio = portfolio.map((asset, index) => ({
     ...asset,
     detail: index === 0 ? 'Core allocation' : index === 1 ? 'Impact sleeve' : 'Liquidity',
@@ -50,7 +64,7 @@ function App() {
           <a href="#activity"><span>04</span>Activity</a>
         </nav>
         <div className="sidebar-footer">
-          <div className="status-dot" /> <span>{apiStatus}</span>
+          <div className="status-dot" /> <span>{dataStatus}</span>
           <button aria-label="Open settings">•••</button>
         </div>
       </aside>
@@ -71,11 +85,11 @@ function App() {
             <div className="chart-range"><button className="selected">1M</button><button>3M</button><button>6M</button><button>1Y</button><button>ALL</button></div>
           </section>
 
-          <section className="insight-card" id="planning"><p className="eyebrow">Your next milestone</p><h2>Financial independence</h2><p className="insight-description">You are on track to reach your target <strong>2 years early.</strong></p><div className="progress"><span style={{ width: '72%' }} /></div><div className="progress-meta"><span>$709k invested</span><span>$1M goal</span></div><button className="text-button">View your plan <span>↗</span></button></section>
+          {banner && <section className="insight-card" id="planning"><p className="eyebrow">{banner.eyebrow}</p><h2>{banner.title}</h2><p className="insight-description">{banner.description} <strong>{banner.highlight}</strong></p><div className="progress"><span style={{ width: `${banner.progress}%` }} /></div><div className="progress-meta"><span>{banner.invested}</span><span>{banner.goal}</span></div><button className="text-button">{banner.action} <span>↗</span></button></section>}
 
           <section className="portfolio-section" id="portfolio"><div className="section-heading"><div><p className="eyebrow">Across your accounts</p><h2>Portfolio snapshot</h2></div><button className="outline-button">View portfolio <span>↗</span></button></div><div className="portfolio-list">{displayPortfolio.map((item) => <article className="portfolio-row" key={item.name}><div className="asset-icon">{item.name[0]}</div><div className="asset-name"><strong>{item.name}</strong><span>{item.detail}</span></div><strong className="asset-value">{item.value}</strong><span className={`asset-change ${item.tone}`}>{item.change}</span><button className="row-arrow" aria-label={`View ${item.name}`}>↗</button></article>)}</div></section>
 
-          <section className="activity-card" id="activity"><div className="section-heading"><div><p className="eyebrow">Recent movement</p><h2>Activity</h2></div><button className="icon-button" aria-label="More activity">•••</button></div><div className="activity-item"><span className="activity-bullet deposit">↓</span><div><strong>Contribution received</strong><span>September 4, 2026</span></div><b>+$2,500</b></div><div className="activity-item"><span className="activity-bullet trade">↗</span><div><strong>Green infrastructure</strong><span>September 2, 2026</span></div><b>+$8,420</b></div></section>
+          <section className="activity-card" id="activity"><div className="section-heading"><div><p className="eyebrow">Recent movement</p><h2>Activity</h2></div><button className="icon-button" aria-label="More activity">•••</button></div>{activity.map((item) => <div className="activity-item" key={`${item.title}-${item.date}`}><span className={`activity-bullet ${item.type}`}>{item.icon}</span><div><strong>{item.title}</strong><span>{item.date}</span></div><b>{item.amount}</b></div>)}</section>
         </div>
       </section>
     </main>

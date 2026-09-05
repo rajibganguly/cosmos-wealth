@@ -1,0 +1,19 @@
+{
+  "assets": [
+      {
+      "name": "Aggressive Hybrid / Flexi Cap Fund",
+      "value": 384250,
+      "change": "+14.65%"
+    },
+    {
+      "name": "Dynamic Asset Allocation (Balanced Advantage)",
+      "value": 215460,
+      "change": "+8.35%"
+    },
+    {
+      "name": "Liquid & Cash Reserves",
+      "value": 110000,
+      "change": "+6.85%"
+    }
+  ]
+}

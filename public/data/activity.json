@@ -1,0 +1,25 @@
+{
+  "activities": [
+        {
+        "title": "SIP Contribution Received",
+        "date": "September 4, 2026",
+        "amount": "+₹25,000",
+        "type": "deposit",
+        "icon": "↓"
+    },
+    {
+        "title": "NJ Momentum Fund (Regular - G)",
+        "date": "September 2, 2026",
+        "amount": "+₹84,200",
+        "type": "trade",
+        "icon": "↗"
+    },
+    {
+        "title": "NJ Balanced Advantage Fund (Regular - G)",
+        "date": "September 2, 2026",
+        "amount": "+₹84,200",
+        "type": "trade",
+        "icon": "↗"
+    }
+  ]
+}
