@@ -60,7 +60,7 @@ function DashboardTitle() {
   return (
     <>
       <div className="container dashboard-tiles-container">
-        <h2 className="pb-2 border-bottom">Not Sure Why to Start?</h2>
+        <h2 className="pb-2 border-bottom">Transparency, Compliance & Your Control</h2>
         <p className="py-4">Hi, {getTimeGreeting()} As an <strong>AMFI-registered Mutual Fund Distributor </strong> (ARN-369290), Rajib Ganguly receives trail commissions directly from fund houses for Regular Plan investments. In strict compliance with AMFI guidelines and the SEBI (Mutual Funds) Regulations, 2026, all earnings are transparently disclosed. You retain complete ownership and execution control over your portfolio at all times. No investment is processed without your explicit consent and a fully verified, mandatory SEBI KYC framework.</p>
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <div className="col">
