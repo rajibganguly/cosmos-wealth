@@ -1,19 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
 
-:root { color: #f5f1e9; background: #10251e; font-family: 'DM Sans', sans-serif; font-synthesis: none; }
-* { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; }
-button, a { font: inherit; }
-button { cursor: pointer; }
-.app-shell { display: flex; min-height: 100vh; background: #f5f1e9; color: #10251e; }
-.sidebar { width: 238px; padding: 34px 26px 28px; display: flex; flex-direction: column; color: #dce7c5; background: #10251e; }
-.brand-mark { width: 34px; height: 34px; border: 1px solid #b9d66a; border-radius: 50%; display: grid; place-items: center; color: #b9d66a; font-family: 'Playfair Display', serif; font-size: 15px; }
-.brand-name { margin-top: 13px; color: #f5f1e9; font-size: 18px; line-height: .85; letter-spacing: -.8px; }.brand-name em { color: #b9d66a; font-family: 'Playfair Display', serif; font-size: 20px; }
-nav { display: grid; gap: 10px; margin-top: 84px; }nav a { color: #83968a; text-decoration: none; padding: 11px 0; font-size: 14px; display: flex; gap: 15px; align-items: center; }nav a span { color: #526c5e; font-family: 'DM Mono', monospace; font-size: 10px; }nav a.active { color: #f5f1e9; }nav a.active span { color: #b9d66a; }
-.sidebar-footer { margin-top: auto; display: flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; color: #83968a; font-size: 9px; text-transform: uppercase; letter-spacing: .7px; }.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #b9d66a; }.sidebar-footer button { margin-left: auto; border: 0; color: #83968a; background: transparent; letter-spacing: 2px; }
-.content { flex: 1; padding: 42px 5.5vw 62px; overflow: hidden; }.topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 52px; }h1, h2, p { margin: 0; }h1 { font-size: clamp(27px, 3vw, 40px); letter-spacing: -1.8px; font-weight: 500; }.eyebrow { color: #718077; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.1px; text-transform: uppercase; }.topbar .eyebrow { margin-bottom: 14px; }.profile { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }.avatar { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 50%; background: #cadb96; font-size: 10px; }.chevron { color: #718077; font-size: 18px; margin-left: 3px; }
-.content-grid { display: grid; grid-template-columns: minmax(0, 1.62fr) minmax(260px, .9fr); gap: 18px; max-width: 1180px; }.hero-card { min-height: 348px; padding: 32px 36px 22px; color: #f5f1e9; background: #18382c; position: relative; overflow: hidden; }.hero-copy { position: relative; z-index: 1; }.hero-card .eyebrow { color: #9aafa0; }.net-worth { margin-top: 18px; font-family: 'Playfair Display', serif; font-size: clamp(38px, 4.5vw, 62px); line-height: 1; letter-spacing: -2px; }.net-worth span { color: #9aafa0; font-size: .6em; }.gain { margin-top: 15px; font-family: 'DM Mono', monospace; font-size: 11px; color: #b9d66a; }.gain span { color: #9aafa0; margin-left: 7px; }.hero-chart { position: absolute; left: 28px; right: 28px; bottom: 57px; height: 163px; }.hero-chart svg { width: 100%; height: 100%; margin-left: 20px; width: calc(100% - 20px); }.chart-labels { height: 100%; position: absolute; left: 0; top: 0; display: flex; flex-direction: column; justify-content: space-between; color: #658172; font: 9px 'DM Mono', monospace; }.chart-range { position: absolute; bottom: 18px; right: 29px; display: flex; gap: 17px; }.chart-range button, .icon-button { border: 0; background: none; color: #7a9888; font: 10px 'DM Mono', monospace; padding: 0; }.chart-range button.selected { color: #b9d66a; }
-.insight-card { min-height: 348px; padding: 32px 32px; background: #dfe8bf; position: relative; }.insight-card h2, .section-heading h2 { margin-top: 10px; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 29px; letter-spacing: -1px; }.insight-description { margin-top: 19px; max-width: 240px; color: #526258; line-height: 1.55; font-size: 14px; }.insight-description strong { color: #18382c; display:block;}.progress { margin-top: 51px; height: 5px; background: #bdcba0; }.progress span { display: block; height: 100%; background: #18382c; }.progress-meta { margin-top: 10px; display: flex; justify-content: space-between; color: #718077; font: 9px 'DM Mono', monospace; }.text-button, .outline-button { padding: 0; border: 0; color: #18382c; background: none; font-size: 12px; font-weight: 600; }.text-button { position: absolute; bottom: 28px; left: 32px; }.text-button span, .outline-button span { margin-left: 8px; font-size: 16px; }
-.portfolio-section, .activity-card { padding-top: 47px; }.section-heading { display: flex; justify-content: space-between; align-items: end; }.section-heading h2 { font-size: 26px; }.outline-button { border: 1px solid #c5cfc6; padding: 10px 14px; color: #526258; font-size: 11px; }.portfolio-list { margin-top: 22px; border-top: 1px solid #d6ddd5; }.portfolio-row { min-height: 67px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #d6ddd5; }.asset-icon { width: 31px; height: 31px; display: grid; place-items: center; color: #18382c; background: #dfe8bf; font-family: 'Playfair Display', serif; }.asset-name { display: grid; gap: 4px; flex: 1; font-size: 13px; }.asset-name span, .activity-item span { color: #718077; font-size: 11px; }.asset-value { width: 110px; text-align: right; font-size: 13px; }.asset-change { width: 53px; text-align: right; font: 11px 'DM Mono', monospace; }.positive { color: #668d47; }.neutral { color: #718077; }.row-arrow { width: 30px; border: 0; background: none; color: #718077; font-size: 16px; }.activity-card { padding-left: 34px; border-left: 1px solid #d6ddd5; }.activity-item { display: flex; align-items: center; gap: 12px; margin-top: 22px; }.activity-item > div { display: grid; gap: 4px; flex: 1; }.activity-item b { font: 12px 'DM Mono', monospace; color: #668d47; }.activity-bullet { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; font-size: 16px; }.deposit { color: #668d47; background: #dfe8bf; }.trade { color: #a17644; background: #f1dfc7; }
-@media (max-width: 850px) { .sidebar { width: 74px; padding: 24px 16px; align-items: center; }.brand-name, nav a:not(.active) span, nav a:not(.active) { font-size: 0; }.brand-name { display: none; } nav { margin-top: 64px; } nav a { padding: 10px; } nav a.active { font-size: 0; } nav a.active span { font-size: 10px; }.sidebar-footer span, .sidebar-footer button { display: none; }.content { padding: 30px 24px 46px; }.content-grid { grid-template-columns: 1fr; }.activity-card { padding-left: 0; border-left: 0; }.topbar { margin-bottom: 35px; } }
-@media (max-width: 520px) { .topbar { gap: 22px; flex-direction: column; }.profile { align-self: flex-start; }.hero-card, .insight-card { padding-left: 24px; padding-right: 24px; }.asset-value { width: auto; }.asset-change { width: auto; }.portfolio-row { gap: 9px; }.asset-name { min-width: 90px; }.outline-button { font-size: 0; padding: 9px; }.outline-button span { font-size: 16px; margin: 0; } }
+:root { color: #f5f1e9; font-family: 'DM Sans', sans-serif; font-synthesis: none; }
+* { box-sizing: border-box; font-family: 'DM Sans', sans-serif;}
+body { margin: 0; min-width: 320px; background: #f5f1e9; font-family: 'DM Sans', sans-serif;}
+.bg-body-tertiary {
+    background: rgb(201, 238, 201) url('https://media.istockphoto.com/id/2291848265/photo/cardboard-boxes-with-euro-banknotes-packages.jpg?s=1024x1024&w=is&k=20&c=I8RC9mlIsAUhyIR8dCxfxrVr7-PV5J1r78L_z3DHEq8=') !important;
+}
+.bg-dark-1 {
+    background: #e3dac9;
+}
+
+.dashboard-tiles-container h3 {
+    min-height: 100px;
+}
+.dashboard-tiles-container p.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: pre-line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 100px;
+}
+
+.dashboard-tiles-container img.card-img-top {
+    height: 150px;
+    object-fit: cover;
+}
+
